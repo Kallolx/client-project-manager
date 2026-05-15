@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     "Professional web development, UI/UX design, and digital solutions. Start your project with kallol.me today.",
   keywords: ["web development", "UI/UX", "SaaS", "freelance developer", "kallol.me"],
   authors: [{ name: "Kallol", url: "https://kallol.me" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "kallol.me — Digital Solutions & Development",
     description:

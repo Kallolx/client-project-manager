@@ -51,7 +51,8 @@ export function StepService() {
                 }
               `}
             >
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-4">
+                <span className="text-2xl mt-0.5">{service.icon}</span>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-foreground text-sm">
                     {service.label}

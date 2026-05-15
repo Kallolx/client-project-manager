@@ -17,13 +17,20 @@ export default function StartProjectPage() {
 
   const renderStep = () => {
     switch (currentStep) {
-      case 1: return <StepService />;
-      case 2: return <StepClientDetails />;
-      case 3: return <StepProjectDetails />;
-      case 4: return <StepFeatures />;
-      case 5: return <StepFiles />;
-      case 6: return <StepReview />;
-      default: return <StepService />;
+      case 1:
+        return <StepService />;
+      case 2:
+        return <StepClientDetails />;
+      case 3:
+        return <StepProjectDetails />;
+      case 4:
+        return <StepFeatures />;
+      case 5:
+        return <StepFiles />;
+      case 6:
+        return <StepReview />;
+      default:
+        return <StepService />;
     }
   };
 
@@ -33,9 +40,7 @@ export default function StartProjectPage() {
       <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           {!projectCode && <StepIndicator currentStep={currentStep} />}
-          <AnimatePresence mode="wait">
-            {renderStep()}
-          </AnimatePresence>
+          <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
         </div>
       </main>
       <Footer />

@@ -24,7 +24,8 @@ export function StepFeatures() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {PROJECT_TYPES.map((type) => (
               <button key={type.value} type="button" onClick={() => setProjectType(type.value as ProjectType)}
-                className={`flex flex-col items-center justify-center h-20 px-4 rounded-xl border transition-all ${formData.project_type === type.value ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card hover:border-primary/30"}`}>
+                className={`flex flex-col items-center justify-center h-24 px-4 rounded-xl border transition-all ${formData.project_type === type.value ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card hover:border-primary/30"}`}>
+                <span className="text-2xl mb-2">{type.icon}</span>
                 <span className="text-sm font-semibold text-center">{type.label}</span>
               </button>
             ))}
@@ -39,7 +40,8 @@ export function StepFeatures() {
               const isChecked = formData.features?.includes(feature.value) || false;
               return (
                 <button key={feature.value} type="button" onClick={() => toggleFeature(feature.value as Feature)}
-                  className={`flex items-center justify-center h-16 px-4 rounded-xl border text-center transition-all ${isChecked ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
+                  className={`flex flex-col items-center justify-center h-24 px-4 rounded-xl border text-center transition-all ${isChecked ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
+                  <span className="text-2xl mb-2">{feature.icon}</span>
                   <span className="text-sm font-semibold">{feature.label}</span>
                 </button>
               );
@@ -68,11 +70,11 @@ export function StepFeatures() {
              <div className="grid grid-cols-2 gap-2 h-full">
                 <button type="button" onClick={() => setResponsive(!formData.responsive)}
                   className={`h-[90px] rounded-xl border text-sm font-semibold transition-all ${formData.responsive ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground hover:border-primary/20"}`}>
-                  Responsive
+                  📱 Responsive
                 </button>
                 <button type="button" onClick={() => setDarkMode(!formData.dark_mode)}
                   className={`h-[90px] rounded-xl border text-sm font-semibold transition-all ${formData.dark_mode ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground hover:border-primary/20"}`}>
-                  Dark Mode
+                  🌙 Dark Mode
                 </button>
              </div>
            </div>
