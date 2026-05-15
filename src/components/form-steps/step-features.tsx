@@ -20,13 +20,12 @@ export function StepFeatures() {
       <div className="space-y-10 max-w-2xl mx-auto">
         {/* Project Type */}
         <div className="space-y-4">
-          <SectionLabel icon={<Layout className="w-4 h-4"/>} label="Project Type" />
+          <SectionLabel label="Project Type" />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {PROJECT_TYPES.map((type) => (
               <button key={type.value} type="button" onClick={() => setProjectType(type.value as ProjectType)}
-                className={`flex flex-col items-center gap-2 p-3 rounded-xl border transition-all ${formData.project_type === type.value ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card hover:border-primary/30"}`}>
-                <span className="text-xl">{type.icon}</span>
-                <span className="text-[10px] font-bold uppercase tracking-tight">{type.label}</span>
+                className={`flex flex-col items-center justify-center h-20 px-4 rounded-xl border transition-all ${formData.project_type === type.value ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card hover:border-primary/30"}`}>
+                <span className="text-sm font-semibold text-center">{type.label}</span>
               </button>
             ))}
           </div>
@@ -34,15 +33,14 @@ export function StepFeatures() {
 
         {/* Features */}
         <div className="space-y-4">
-          <SectionLabel icon={<Sparkles className="w-4 h-4"/>} label="Desired Features" />
+          <SectionLabel label="Desired Features" />
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {FEATURES.map((feature) => {
               const isChecked = formData.features?.includes(feature.value) || false;
               return (
                 <button key={feature.value} type="button" onClick={() => toggleFeature(feature.value as Feature)}
-                  className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${isChecked ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
-                  <span className="text-lg">{feature.icon}</span>
-                  <span className="text-[10px] font-bold uppercase leading-tight">{feature.label}</span>
+                  className={`flex items-center justify-center h-16 px-4 rounded-xl border text-center transition-all ${isChecked ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
+                  <span className="text-sm font-semibold">{feature.label}</span>
                 </button>
               );
             })}
@@ -52,29 +50,29 @@ export function StepFeatures() {
         {/* Complexity & Pages */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            <div className="space-y-4">
-             <SectionLabel icon={<Layers className="w-4 h-4"/>} label="Scale" />
+             <SectionLabel label="Project Scale" />
              <div className="p-6 rounded-2xl border border-border bg-card/50 flex items-center justify-between">
                 <div className="space-y-1">
-                   <p className="text-[10px] font-bold uppercase text-muted-foreground">Number of Pages</p>
-                   <p className="text-2xl font-bold tracking-tighter">{formData.pages || 1}</p>
+                   <p className="text-xs font-medium text-muted-foreground">Number of Pages</p>
+                   <p className="text-3xl font-bold tracking-tighter">{formData.pages || 1}</p>
                 </div>
                 <div className="flex gap-2">
-                   <Button type="button" variant="outline" size="icon" className="h-10 w-10 rounded-xl" onClick={() => setPages(Math.max(1, (formData.pages || 1) - 1))}><Minus className="w-4 h-4" /></Button>
-                   <Button type="button" variant="outline" size="icon" className="h-10 w-10 rounded-xl" onClick={() => setPages(Math.min(100, (formData.pages || 1) + 1))}><Plus className="w-4 h-4" /></Button>
+                   <Button type="button" variant="outline" size="icon" className="h-10 w-10 rounded-xl border-border hover:bg-muted" onClick={() => setPages(Math.max(1, (formData.pages || 1) - 1))}><Minus className="w-4 h-4" /></Button>
+                   <Button type="button" variant="outline" size="icon" className="h-10 w-10 rounded-xl border-border hover:bg-muted" onClick={() => setPages(Math.min(100, (formData.pages || 1) + 1))}><Plus className="w-4 h-4" /></Button>
                 </div>
              </div>
            </div>
 
            <div className="space-y-4">
-             <SectionLabel icon={<Monitor className="w-4 h-4"/>} label="Preferences" />
-             <div className="grid grid-cols-2 gap-2">
+             <SectionLabel label="Preferences" />
+             <div className="grid grid-cols-2 gap-2 h-full">
                 <button type="button" onClick={() => setResponsive(!formData.responsive)}
-                  className={`p-3 rounded-xl border text-[10px] font-bold uppercase transition-all ${formData.responsive ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground"}`}>
-                  📱 Responsive
+                  className={`h-[90px] rounded-xl border text-sm font-semibold transition-all ${formData.responsive ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground hover:border-primary/20"}`}>
+                  Responsive
                 </button>
                 <button type="button" onClick={() => setDarkMode(!formData.dark_mode)}
-                  className={`p-3 rounded-xl border text-[10px] font-bold uppercase transition-all ${formData.dark_mode ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground"}`}>
-                  🌙 Dark Mode
+                  className={`h-[90px] rounded-xl border text-sm font-semibold transition-all ${formData.dark_mode ? "border-primary bg-primary/10 text-primary shadow-lg shadow-primary/5" : "border-border bg-card text-muted-foreground hover:border-primary/20"}`}>
+                  Dark Mode
                 </button>
              </div>
            </div>
@@ -82,13 +80,13 @@ export function StepFeatures() {
 
         {/* Design Complexity */}
         <div className="space-y-4">
-          <SectionLabel icon={<Sparkles className="w-4 h-4"/>} label="Visual Quality" />
+          <SectionLabel label="Visual Quality" />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
              {DESIGN_COMPLEXITIES.map((c) => (
                <button key={c.value} type="button" onClick={() => setDesignComplexity(c.value as DesignComplexity)}
-                 className={`flex flex-col gap-1 p-3 rounded-xl border text-left transition-all ${formData.design_complexity === c.value ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
-                 <span className="text-[10px] font-bold uppercase tracking-tight">{c.label}</span>
-                 <span className="text-[8px] text-muted-foreground uppercase leading-tight font-medium">{c.description}</span>
+                 className={`flex flex-col justify-center min-h-[80px] p-4 rounded-xl border text-left transition-all ${formData.design_complexity === c.value ? "border-primary bg-primary/10 text-primary" : "border-border bg-card hover:border-primary/30"}`}>
+                 <span className="text-sm font-semibold mb-1">{c.label}</span>
+                 <span className="text-[11px] text-muted-foreground leading-tight">{c.description}</span>
                </button>
              ))}
           </div>
@@ -107,11 +105,11 @@ export function StepFeatures() {
   );
 }
 
-function SectionLabel({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SectionLabel({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-2 px-1 text-primary">
-      {icon}
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{label}</span>
+      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+      <span className="text-xs font-bold tracking-widest">{label}</span>
     </div>
   );
 }

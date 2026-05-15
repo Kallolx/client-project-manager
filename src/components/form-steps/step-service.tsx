@@ -52,9 +52,8 @@ export function StepService() {
               `}
             >
               <div className="flex items-start gap-3">
-                <span className="text-2xl">{service.icon}</span>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-foreground text-sm">
+                  <h3 className="font-semibold text-foreground text-sm">
                     {service.label}
                   </h3>
                   <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
