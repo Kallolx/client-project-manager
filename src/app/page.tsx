@@ -1,65 +1,69 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, Code, Palette, Rocket, MessageSquare, Star, Zap, Layers, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+
+const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } };
+
+const services = [
+  { icon: <Code className="w-5 h-5" />, title: "Web Development", desc: "Modern, fast, and scalable web applications" },
+  { icon: <Palette className="w-5 h-5" />, title: "UI/UX Design", desc: "Beautiful interfaces that users love" },
+  { icon: <Rocket className="w-5 h-5" />, title: "SaaS Products", desc: "Full-stack SaaS from idea to launch" },
+  { icon: <Layers className="w-5 h-5" />, title: "E-commerce", desc: "Online stores with seamless checkout" },
+  { icon: <Zap className="w-5 h-5" />, title: "Mobile Apps", desc: "Cross-platform mobile applications" },
+  { icon: <MessageSquare className="w-5 h-5" />, title: "Branding", desc: "Complete brand identity systems" },
+];
+
+const workflow = [
+  { step: "01", title: "Select Service", desc: "Choose from our range of digital services" },
+  { step: "02", title: "Share Details", desc: "Tell us about your project and vision" },
+  { step: "03", title: "Get Estimate", desc: "Receive transparent pricing instantly" },
+  { step: "04", title: "Track Progress", desc: "Monitor your project in real-time" },
+];
+
+const testimonials = [
+  { name: "Alex Johnson", role: "CEO, TechCorp", text: "Exceptional quality and attention to detail. The project was delivered ahead of schedule.", rating: 5 },
+  { name: "Sarah Williams", role: "Founder, Designly", text: "The best developer I've worked with. Clean code, beautiful design, and great communication.", rating: 5 },
+  { name: "Michael Chen", role: "CTO, StartupXYZ", text: "Transformed our vision into reality. The SaaS platform exceeded all expectations.", rating: 5 },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.20_0.06_250)_0%,transparent_60%)]" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/50 text-xs text-muted-foreground mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Available for new projects
+            </div>
+          </motion.div>
+          <motion.h1 {...fadeUp} transition={{ delay: 0.2 }} className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]" style={{ fontFamily: "var(--font-heading)" }}>
+            Build digital products<br />
+            <span className="gradient-text">that matter</span>
+          </motion.h1>
+          <motion.p {...fadeUp} transition={{ delay: 0.3 }} className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            From concept to launch — I design and develop premium web applications, SaaS platforms, and digital experiences for ambitious brands.
+          </motion.p>
+          <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/start-project">
+              <Button size="lg" className="gap-2 rounded-xl px-8 h-12 text-base">Start Your Project<ArrowRight className="w-4 h-4" /></Button>
+            </Link>
+            <Link href="/track">
+              <Button variant="outline" size="lg" className="gap-2 rounded-xl px-8 h-12 text-base">Track Existing Project<ChevronRight className="w-4 h-4" /></Button>
+            </Link>
+          </motion.div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+      <Footer />
     </div>
   );
 }
