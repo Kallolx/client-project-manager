@@ -5,6 +5,7 @@ interface FormState {
   currentStep: number;
   formData: Partial<ProjectFormData>;
   uploadedFiles: File[];
+  logoFile: File | null;
   referenceLinks: string[];
   isSubmitting: boolean;
   projectCode: string | null;
@@ -20,6 +21,7 @@ interface FormState {
   setResponsive: (responsive: boolean) => void;
   setDarkMode: (darkMode: boolean) => void;
   addFiles: (files: File[]) => void;
+  setLogoFile: (file: File | null) => void;
   removeFile: (index: number) => void;
   addReferenceLink: (link: string) => void;
   removeReferenceLink: (index: number) => void;
@@ -55,6 +57,7 @@ export const useFormStore = create<FormState>((set) => ({
   currentStep: 1,
   formData: { ...initialFormData },
   uploadedFiles: [],
+  logoFile: null,
   referenceLinks: [],
   isSubmitting: false,
   projectCode: null,
@@ -98,6 +101,8 @@ export const useFormStore = create<FormState>((set) => ({
   addFiles: (files) =>
     set((state) => ({ uploadedFiles: [...state.uploadedFiles, ...files] })),
 
+  setLogoFile: (file) => set({ logoFile: file }),
+
   removeFile: (index) =>
     set((state) => ({
       uploadedFiles: state.uploadedFiles.filter((_, i) => i !== index),
@@ -119,6 +124,7 @@ export const useFormStore = create<FormState>((set) => ({
       currentStep: 1,
       formData: { ...initialFormData },
       uploadedFiles: [],
+      logoFile: null,
       referenceLinks: [],
       isSubmitting: false,
       projectCode: null,

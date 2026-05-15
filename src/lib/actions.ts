@@ -58,7 +58,8 @@ export async function uploadProjectFile(projectId: string, file: FormData) {
   if (!fileData) return { success: false, error: "No file provided" };
 
   const fileExt = fileData.name.split(".").pop();
-  const fileName = `${projectId}/${Date.now()}.${fileExt}`;
+  const randomSuffix = Math.random().toString(36).substring(2, 8);
+  const fileName = `${projectId}/${Date.now()}-${randomSuffix}.${fileExt}`;
 
   const { error: uploadError } = await supabase.storage.from("project-files").upload(fileName, fileData);
   if (uploadError) return { success: false, error: uploadError.message };
