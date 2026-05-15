@@ -31,16 +31,27 @@ export function StepReview() {
       } as any);
 
       if (!result.success) { 
-        toast.error(result.error || "Something went wrong"); 
+        toast.error(result.error || "Failed to create project"); 
         setIsSubmitting(false); 
         return; 
       }
 
+      // Handle file uploads as secondary actions
       if (result.projectId && uploadedFiles.length > 0) {
+        toast.info(`Uploading ${uploadedFiles.length} file(s)...`);
+        
+        // Upload one by one to avoid overwhelming the server action
         for (const file of uploadedFiles) {
           const fd = new FormData();
           fd.append("file", file);
-          await uploadProjectFile(result.projectId, fd);
+          try {
+            const uploadResult = await uploadProjectFile(result.projectId as string, fd);
+            if (!uploadResult.success) {
+              console.error("File upload failed:", uploadResult.error);
+            }
+          } catch (e) {
+            console.error("Upload error:", e);
+          }
         }
       }
 
@@ -48,8 +59,9 @@ export function StepReview() {
       setCode(result.projectCode!);
       setSubmitted(true);
       toast.success("Project submitted successfully!");
-    } catch (err) {
-      toast.error("Failed to submit project. Please try again.");
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      toast.error("An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
     }
